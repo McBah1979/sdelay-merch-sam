@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4ff52">
+  <title>Сделай мерч сам</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Unbounded:wght@500;600;700;800&amp;family=Rubik:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="logo" href="#"><span class="logo-mark">✦</span><span>сделай<br><b>мерч сам</b></span></a>
+    <nav class="main-nav"><a class="active" href="#designer">Конструктор</a><a href="#how">Как это работает</a><a href="#examples">Идеи</a></nav>
+    <div class="header-actions"><button class="icon-btn" id="savedBtn" aria-label="Сохранённые варианты" title="Сохранённые варианты">♡</button><button class="cart-button" id="cartBtn">Корзина <span id="cartCount">0</span></button><button class="menu-btn" id="menuBtn">☰</button></div>
+  </header>
+
+  <main>
+    <section class="hero" id="designer">
+      <div class="hero-copy"><p class="kicker">Твой дизайн. Твои правила.</p><h1>Не просто вещь.<br><em>Это ты.</em></h1><p class="hero-text">Собери мерч, который говорит за тебя. Никакой скуки, сложных программ и чужих правил.</p><div class="hero-notes"><span><b>01</b> Придумай</span><span><b>02</b> Собери</span><span><b>03</b> Сохрани</span></div></div>
+      <div class="hero-art"><div class="scribble">сделано<br>тобой</div><div class="hero-circle"><span>✦</span></div><div class="sticker">без<br>дизайнера</div></div>
+    </section>
+
+    <section class="builder-wrap">
+      <div class="section-heading"><div><p class="kicker">01 / конструктор</p><h2>Собери свой первый дроп</h2></div><div class="builder-status"><span class="status-dot"></span><span id="saveStatus">Сохрани проект, чтобы продолжить позже</span></div></div>
+      <div class="builder">
+        <aside class="sidebar">
+          <div class="side-block"><p class="label">Выбери вещь</p><div class="product-list" id="productList"></div></div>
+          <div class="side-block"><p class="label">Вариант</p><div class="fit-options" id="fitOptions" role="group" aria-label="Вариант товара"></div></div>
+          <div class="side-block"><p class="label">Размер товара</p><div class="size-options" id="sizeOptions" role="group" aria-label="Размер товара"></div><small class="size-hint" id="sizeHint"></small></div>
+          <div class="side-block"><p class="label">Цвет изделия</p><div class="swatches" id="swatches"></div><label class="custom-color" for="customColor"><input type="color" id="customColor" value="#ff6b35" aria-label="Выбрать свой цвет изделия"><span>Свой цвет</span><output id="customColorValue">#FF6B35</output></label></div>
+          <div class="side-block"><p class="label">Сторона</p><div class="segmented"><button class="selected" data-side="front">Перед</button><button data-side="back">Спина</button></div></div>
+          <div class="ai-tools"><label for="aiTheme">Тема надписи (необязательно)<input id="aiTheme" maxlength="80" placeholder="Например: музыка, свобода, друзья"></label><button class="ai-button" id="aiButton"><span>✦</span><span><b>Придумать за меня</b><small>Бесплатная ИИ-модель в браузере</small></span><i>→</i></button><small>Без регистрации и лимитов. При первом запуске потребуется скачать модель (~500 МБ); затем она хранится в браузере.</small></div>
+        </aside>
+
+        <section class="stage"><div class="stage-top"><span id="stageLabel">Футболка · Женский · M · передняя сторона</span><div class="stage-actions"><button id="undoBtn" title="Отменить">↶</button><button id="redoBtn" title="Повторить">↷</button><button id="zoomBtn" title="Увеличить">⌕</button></div></div><div class="product-canvas" id="productCanvas"><div class="canvas-grid"></div><div class="garment tshirt female-fit" id="garment"><div class="garment-neck"></div><div class="print-area" id="printArea"></div></div><div class="canvas-caption">Перетащи текст или фото, чтобы переместить</div></div><div class="stage-bottom"><button class="outline-btn" id="previewBtn">◉ Предпросмотр</button><span id="printSize">Размер печати: 30 × 40 см</span></div></section>
+
+        <aside class="tools"><p class="label">Добавить на макет</p><div class="tool-grid"><button id="uploadBtn"><span>▧</span>Фото / картинка</button><button id="textBtn"><span>Т</span>Текст</button><button id="stickerBtn"><span>✦</span>Стикер</button><button id="shapeBtn"><span>◯</span>Форма</button></div><input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp,image/svg+xml" hidden><button class="edit-button" id="editBtn" disabled><span>✎</span>Редактировать выбранное</button><div class="text-settings" id="textSettings" hidden><p class="label">Настройки текста</p><label class="setting-label" for="textContent">Надпись</label><textarea id="textContent" rows="2" maxlength="100" placeholder="Напиши что-нибудь"></textarea><label class="setting-label" for="textFont">Шрифт</label><select id="textFont"><option value="unbounded">Анбаундед — яркий</option><option value="manrope">Манроп — современный</option><option value="rubik">Рубик — выразительный</option><option value="serif">Классический</option></select><label class="setting-label" for="textSize">Размер: <output id="textSizeValue">27</output> пкс</label><input id="textSize" type="range" min="12" max="48" value="27"><label class="setting-label" for="textColor">Цвет надписи</label><div class="text-color-row"><div class="text-palette" id="textPalette"></div><input id="textColor" type="color" value="#171717" aria-label="Свой цвет текста"></div><label class="curve-toggle" for="curveText"><input id="curveText" type="checkbox"><span>Изогнуть текст</span></label><div class="curve-control" id="curveControl" hidden><label class="setting-label" for="curveAmount">Изгиб: <output id="curveAmountValue">55</output></label><input id="curveAmount" type="range" min="-100" max="100" value="55"><small>Влево — дуга вниз, вправо — вверх</small></div></div><div class="position-settings" id="positionSettings" hidden><p class="label">Положение и поворот</p><small>Перетащи элемент на мерче или используй ползунки</small><label class="setting-label" for="positionX">По горизонтали: <output id="positionXValue">0</output>%</label><input id="positionX" type="range" min="-50" max="50" value="0"><label class="setting-label" for="positionY">По вертикали: <output id="positionYValue">0</output>%</label><input id="positionY" type="range" min="-50" max="50" value="0"><label class="setting-label" for="rotation">Поворот: <output id="rotationValue">0</output>°</label><input id="rotation" type="range" min="-180" max="180" value="0"><button class="reset-position" id="resetPositionBtn">Сбросить положение и поворот</button></div><div class="tool-divider"></div><div class="layers-head"><p class="label">Слои</p><button id="clearBtn">Очистить</button></div><div class="layers" id="layers"><div class="empty-layers">Добавьте элемент,<br>чтобы увидеть его здесь</div></div><div class="price-card"><div><span>Итого</span><strong id="price">1 490 ₽</strong></div><small>Доставка от 3 дней</small><button class="primary-btn" id="addCartBtn">Добавить в корзину <span>→</span></button></div></aside>
+      </div>
+      <div class="export-panel">
+        <div class="export-copy"><strong>Сохрани свой дизайн ↗</strong><span>Варианты доступны через ♡ вверху страницы</span></div>
+        <div class="export-controls">
+          <label for="exportSides">Стороны<select id="exportSides"><option value="both">Обе стороны</option><option value="front">Передняя</option><option value="back">Задняя</option></select></label>
+          <label for="exportFormat">Формат<select id="exportFormat"><option value="png">PNG</option><option value="jpeg">JPG</option><option value="webp">WebP</option><option value="svg">SVG</option></select></label>
+          <label for="projectName">Название варианта<input id="projectName" maxlength="60" placeholder="Мой дизайн"></label>
+          <button class="export-button save-project-button" id="saveProjectBtn">♡ Сохранить вариант</button>
+          <button class="export-button saved-variants-button" id="savedVariantsBtn">▣ Сохранённые варианты</button>
+          <button class="export-button" id="exportBtn">↓ Скачать макет</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="how" id="how"><p class="kicker">02 / как это работает</p><h2>От идеи до макета —<br><em>три простых шага.</em></h2><div class="steps"><article><b>01</b><span>✎</span><h3>Выбери основу</h3><p>Футболка, худи или шоппер — начни с того, что хочется носить.</p></article><article><b>02</b><span>✦</span><h3>Добавь характер</h3><p>Загрузи свой рисунок, набери текст или попроси нейросеть накидать идею.</p></article><article><b>03</b><span>↗</span><h3>Сохрани дизайн</h3><p>Сохрани вариант для продолжения или скачай готовый макет.</p></article></div></section>
+    <section class="ideas" id="examples"><div><p class="kicker">03 / вдохновение</p><h2>Мерч — это<br>твой <em>голос.</em></h2></div><div class="idea-cards"><div class="idea-card lilac"><span>НИ ДНЯ<br>БЕЗ<br>КАЙФА</span><small>01 / настроение</small></div><div class="idea-card orange"><span>ДЕЛАЙ<br>ТО, ЧТО<br>ЛЮБИШЬ</span><small>02 / энергия</small></div><div class="idea-card dark"><span>БУДЬ<br>СОБОЙ<br>✦</span><small>03 / характер</small></div></div></section>
+  </main>
+  <footer><a class="logo" href="#"><span class="logo-mark">✦</span><span>сделай<br><b>мерч сам</b></span></a><span>© 2024 Сделай мерч сам</span><span>Сделано с идеей и любовью</span></footer>
+
+  <div class="toast" id="toast"></div><div class="modal-backdrop" id="modal"><div class="modal-card"><button class="modal-close" id="modalClose" aria-label="Закрыть корзину">×</button><p class="kicker">твой заказ</p><h2>Корзина <span id="modalCount">0</span></h2><div id="cartItems"></div><div class="cart-total" id="cartTotal" hidden><span>Итого</span><strong id="cartTotalPrice">0 ₽</strong></div><button class="primary-btn" id="checkoutBtn">Перейти к оформлению <span>→</span></button></div></div>
+  <div class="modal-backdrop" id="savedModal"><div class="modal-card saved-modal-card" role="dialog" aria-modal="true" aria-labelledby="savedTitle"><button class="modal-close" id="savedClose" aria-label="Закрыть сохранённые варианты">×</button><p class="kicker">твоя коллекция</p><h2 id="savedTitle">Сохранённые варианты</h2><div id="savedList" class="saved-list"></div></div></div>
+  <div class="modal-backdrop" id="previewModal"><div class="modal-card preview-modal-card" role="dialog" aria-modal="true" aria-labelledby="previewTitle"><button class="modal-close" id="previewClose" aria-label="Закрыть предпросмотр">×</button><h2 id="previewTitle">Предпросмотр макета</h2><img id="previewImage" alt="Текущий дизайн изделия"></div></div>
+  <script src="game.js"></script>
+  <script src="export.js"></script>
+</body>
+</html>

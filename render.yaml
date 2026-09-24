@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: sdelay-merch-sam
+    runtime: static
+    buildCommand: mkdir -p public && cp index.html styles.css game.js export.js public/
+    staticPublishPath: ./public
